@@ -40,7 +40,75 @@ var count = $(this).parent().prev().text();
 $(this).parent().prev().html(Number(count) - 1);
 });
 
+/*$("#botonCompra").click(function(){
+    var errores=
+})*/
+
 });
+// validaciones tarjeta  de crédito
+$("#botonCompra").click(function(){
+      var exp6=/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/; //fecha
+      var exp5=/^[0-9]{16}$/; //numero de la tarjeta
+      var exp4=/^[a-zA-Z-' ]*$/; //nombre
+      var exp7=/^[0-9]{3}$/; //tres
+
+      var errores2="";
+      if(!$("#cname").val().match(exp4)){
+        errores2+="No ha introducido de manera correcta el combre \n";
+      }
+      if($("#cname").val()==""){
+        errores2+="No ha introducido nada en el campo del correo \n";
+      }
+      if(!$("#cnum").val().match(exp5)){
+        errores2+="No ha introducido de manera correcta los numeros de la tarjeta \n";
+      }
+      if($("#cnum").val()==""){
+        errores2+="No ha introducido nada en el campo de los numeros de la tarjeta \n";
+
+      }if(!$("#exp").val().match(exp6)){
+        errores2+="No ha introducido de manera correcta la fecha \n";
+      }
+      if($("#exp").val()==""){
+        errores2+="No ha introducido nada en el campo de la fecha \n";
+
+      }if(!$("#cvv").val().match(exp7)){
+        errores2+="No ha introducido de manera correcta los tres dígitos \n";
+      }
+      if($("#cvv").val()==""){
+        errores2+="No ha introducido nada en el campo de los tres dígitos \n";
+      }
+      if(errores2!=""){
+        alert("Ha cometido los siguientes errores \n"+errores2);
+      }
+      else{
+        compra();
+      }
+    })
+
+    function compra(){
+            var cname=$("#cname").val();
+            var valor=$("#valor").val();
+            var cvv=$("#cvv").val();
+            var cnum=$("#nu").val();
+            var sumador=$("#sumador").val();
+
+            var peticion = $.ajax({
+            url: "listcom.php",
+            type: "POST",
+            async: true, // no es obligario es asincrono por defecto
+            data: { //Variable que vamos a mandar al servidor
+                cname: cname,
+                valor: valor,
+                cvv: cvv,
+                cnum: cnum,
+                sumador: sumador
+            },
+            success: function(data) { //cuando nos devuelve una respuesta favorable entra en el success
+            $("#resp").html(peticion.responseText);
+        }
+        })
+        } 
+
 </script> 
    <style>
     body {
@@ -75,8 +143,8 @@ color: #FF5252
 
 .book,
 .book-img {
-width: 120px;
-height: 180px;
+width: 100%;
+height: 201px;
 border-radius: 5px
 }
 
@@ -202,65 +270,74 @@ float: right
 }
 }
 </style>
-<script>
-    // jquery de muestra de coches para carrito al iniciar la pagina
-/*$(document).ready(function () {
-    productos();
-    function productos(){
-        var peticion = $.ajax({
-                    url: "mostrar.php",
-                    type: "POST",
-                    async: true, // no es obligario es asincrono por defecto
-                    data: {
-                        id: id
-                    },
-                    success: function (
-                    data) { //cuando nos devuelve una respuesta favorable entra en el success
-                        $("#contador").html(data);
-                    }
-                })
-    }
-})*/
-$(document).ready(function () {
-function eliminar(){
-    var peticion= $.ajax({
-        url: "",
-                    type: "POST",
-                    async: true, // no es obligario es asincrono por defecto
-                    data: {},
-                    success: function (
-                    data) { //cuando nos devuelve una respuesta favorable entra en el success
-                        $("#contador").html(data);
-                    }
-    })
-}
-})
-$("#Eliminar").click(function () {
-eliminar();
-});
 
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+          <div class="container">
+            <a class="navbar-brand" href="#">Pieza por Pieza</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="./index.html">Inicio
+                        <span class="sr-only">(current)</span>
+                      </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Quienes Somos</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Nuestros Productos</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Contacto</a>
+                </li>
+      
+                <li class="nav-item dropdown"> 
+           <?php
+              if(isset($_SESSION["sesion1"])){
+                echo "<a style='cursor:pointer' class='nav-link dropdown-toggle' data-toggle='dropdown'>".$_SESSION["sesion1"]."</a>
+                <div class='dropdown-menu' style='background-color:#c3cace'>
+                <a class='dropdown-item' href='#'>Actualiza tu cuenta</a>
+                <a class='dropdown-item' href='#'>Mis compras</a>
+                <a class='dropdown-item' href='cierreSesion.php'>Cerrar Sesión</a>
+              </div>";
+                
 
-</script>
-   
+                //echo "<a class='nav-link js-scroll-trigger' href='cierreSesion.php'>".$_SESSION["sesion1"]."</a>";
 
+              }else{
+                echo "<li class='nav-item'><a class='nav-link js-scroll-trigger' href='./iniciarsesion.php'>Iniciar sesion</a></li>";
+              }
+            ?>
+            </li>
+              </ul>
+            </div>
+          </div>
+        </nav><br><br>
 </head>
 <body>
 
     <div class="container px-4 py-5 mx-auto">
         <div class="row d-flex justify-content-center">
-            <div class="col-5">
-                <h4 class="heading">Shopping Bag</h4>
+            <div class="col-3">
+                <h4 class="heading">Tu Cesta</h4>
             </div>
-            <div class="col-7">
-                <div class="row text-right">
-                    <div class="col-4">
+            <div class="col-9">
+                <div class="row text-center">
+                    <div class="col-3">
                         <h6 class="mt-2">Modelo</h6>
                     </div>
-                    <div class="col-4">
+                    <div class="col-3">
                         <h6 class="mt-2">Color</h6>
                     </div>
-                    <div class="col-4">
+                    <div class="col-3">
                         <h6 class="mt-2">Precio</h6>
+                    </div>
+                    <div class="col-3">
+                        <h6 class="mt-2"></h6>
                     </div>
                 </div>
             </div>
@@ -269,12 +346,13 @@ eliminar();
 
         <?php
 
-
+        $sumador=0;
+        $envio=10;
         $auto=$_SESSION['carritoMuestra'];
         
         require("funcionConexion.php");
         
-        foreach($auto as $valor){
+        foreach($auto as $clave => $valor){
         $con=conexion("pap"); //La base de datos
         $acentos = mysqli_query($con,"SET NAMES 'utf8'");
         $accion="select modelo,color,precio from vehiculos Where id_vehiculo='$valor'";
@@ -284,29 +362,32 @@ eliminar();
         for($i=0;$i<$cantidad;$i++){
                 $datos=mysqli_fetch_array($result);
                 echo "<div class='row d-flex justify-content-center border-top'>
-                <div class='col-5'>
+                <div class='col-3'>
                     <div class='row d-flex'>
                         <div class='book' id='contador'> <img src='./assets/img/$valor.jpeg' class='book-img'> </div>
                     </div>
                 </div>
-                <div class='my-auto col-7'>
-                    <div class='row text-right'>
-                        <div class='col-4'>
+                <div class='my-auto col-9'>
+                    <div class='row text-center'>
+                        <div class='col-3'>
                             <p class='mob-text'>$datos[modelo]</p>
                         </div>
-                        <div class='col-4'>
+                        <div class='col-3'>
                             <p class='mob-text'>$datos[color]</p>
                         </div>
                         
-                        <div class='col-4'>
+                        <div class='col-3'>
                             <p class='mob-text'>Desde $datos[precio] €</p>
                         </div>
-                        <div class='col-4'>
-                        <i  id='Eliminar' class='fas fa-trash-alt'></i>
-                    </div> 
+                        <div class='col-3'>
+                        <a href='./eliminarCarrito.php?posicion=$clave'><i style='color:black;' id='Eliminar'  class='fas fa-trash-alt'></i></a>
+                        </div>
+
+                        
                     </div>
                 </div>
             </div>";
+            $sumador+=$datos['precio'];
         }
         
         mysqli_close($con);
@@ -314,6 +395,54 @@ eliminar();
     
 
         ?>
+
+<?php
+
+
+$auto=$_SESSION['carritoMuestra'];
+foreach($auto as $clave => $valor){
+$con=conexion("pap"); //La base de datos
+$acentos = mysqli_query($con,"SET NAMES 'utf8'");
+$accion="select modelo,precio,especificaciones from piezas Where id_pieza='$valor'";
+$result=mysqli_query($con,$accion);
+$cantidad= mysqli_num_rows($result);
+
+for($i=0;$i<$cantidad;$i++){
+        $datos=mysqli_fetch_array($result);
+        echo "<div class='row d-flex justify-content-center border-top'>
+        <div class='col-3'>
+            <div class='row d-flex'>
+                <div class='book' id='contador'> <img src='./assets/img/$valor.jpeg' class='book-img'> </div>
+            </div>
+        </div>
+        <div class='my-auto col-9'>
+            <div class='row text-center'>
+                <div class='col-3'>
+                    <p class='mob-text'>$datos[modelo]</p>
+                </div>
+                <div class='col-3'>
+                    <p class='mob-text'>No Alterable</p>
+                </div>
+                
+                <div class='col-3'>
+                    <p class='mob-text'> Desde $datos[precio] €</p>
+                </div>
+                <div class='col-3'>
+                <a href='./eliminarCarrito.php?posicion=$clave'><i style='color:black;' id='Eliminar'  class='fas fa-trash-alt'></i></a>
+                </div>
+
+                
+            </div>
+        </div>
+    </div>";
+    $sumador+=$datos['precio'];
+}
+
+mysqli_close($con);
+}
+
+
+?>
        
         <div class="row justify-content-center">
             <div class="col-lg-12">
@@ -343,16 +472,18 @@ eliminar();
                         <div class="col-lg-4 mt-2">
                             <div class="row d-flex justify-content-between px-4">
                                 <p class="mb-1 text-left">Subtotal</p>
-                                <h6 class="mb-1 text-right">$23.49</h6>
+                                <h6 class="mb-1 text-right" id="precioFinalSin"><?php echo $sumador ?> €</h6>
                             </div>
                             <div class="row d-flex justify-content-between px-4">
-                                <p class="mb-1 text-left">Shipping</p>
-                                <h6 class="mb-1 text-right">$2.99</h6>
+                                <p class="mb-1 text-left">Envío a concesionario</p>
+                                <h6 class="mb-1 text-right">10€</h6>
                             </div>
                             <div class="row d-flex justify-content-between px-4" id="tax">
-                                <p class="mb-1 text-left">Total (tax included)</p>
-                                <h6 class="mb-1 text-right">$26.48</h6>
-                            </div> <button class="btn-block btn-blue"> <span> <span id="checkout">Checkout</span> <span id="check-amt">$26.48</span> </span> </button>
+                                <p class="mb-1 text-left">Total (IVA incluído)</p>
+                                <h6 class="mb-1 text-right" id="precioFinal"><?php echo $sumador + $envio ?> €</h6>
+                            </div> <button class="btn-block btn-blue" id="botonCompra"> <span> <span id="checkout">Pagar</span> <span id="check-amt"><?php echo $sumador + $envio ?> €</span> </span> </button>
+                            
+                            
                         </div>
                     </div>
                 </div>
