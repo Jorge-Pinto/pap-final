@@ -1,7 +1,9 @@
+
+
 <?php
 
 session_start();
-$_SESSION["pagina"]="piezasImp.php";
+$_SESSION["pagina"]="22P.php";
 
 ?>
 
@@ -23,8 +25,9 @@ $_SESSION["pagina"]="piezasImp.php";
         <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css"
             rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/stylefiat.css" rel="stylesheet" />
+        <link href="css/stylemodels.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
 <!-- Navigation -->
@@ -75,6 +78,35 @@ $_SESSION["pagina"]="piezasImp.php";
     </div>
   </nav>
 
+        <script>
+
+
+          $(document).ready(function(){
+            infoaudirs5();
+
+          })
+
+          function infoaudirs5(){
+            var marca="Ruedas Mabdul";
+            var peticion = $.ajax({
+            url: "sacarpieza.php",
+            type: "POST",
+            async: true, // no es obligario es asincrono por defecto
+            data: { //Variable que vamos a mandar al servidor
+               marca: marca
+            },
+            success: function() { //cuando nos devuelve una respuesta favorable entra en el success
+            $("#listars5").html(peticion.responseText);
+        }
+        }
+
+        )}
+
+
+        </script>
+
+
+
     </head>
     
 
@@ -83,170 +115,46 @@ $_SESSION["pagina"]="piezasImp.php";
 
   <body>
   
-  
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-      <ol class="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-      </ol>
-      <div class="carousel-inner" role="listbox">
-        <!-- Slide Two - Set the background image for this slide in the line below -->
-        <div class="carousel-item active" style="background-image: url('./assets/img/motorA.jpg')">
-          <div class="carousel-caption d-none d-md-block">
-            <p class="lead"> La mecánica más potente del mercado, en Pieza por Pieza.</p>
-          </div>
+    <div class="container" style="background-color: rgb(214, 214, 214);">
+      <div class="row">
+        <div class="col-lg" style="margin-right: 50px;">
+
+                          <!-- Import the component -->
+                <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+                <!-- Use it like any other HTML element -->
+                <model-viewer id="hola" src="./3DruedasA/scene.gltf" alt=" A Range-Rover-Evoque"  auto-rotate camera-controls></model-viewer>
+
+
         </div>
-        <!-- Slide Three - Set the background image for this slide in the line below -->
-        <div class="carousel-item" style="background-image: url('./assets/img/transmision.jpg')">
-          <div class="carousel-caption d-none d-md-block">
-            <p class="lead"> La mayor calidad precio, solo aquí, en Pieza por Pieza.</p>
-          </div>
-        </div>
-        
-          
-      </div>
-      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
-    </div>
 
 
-  
-  
-  <!-- Page Content -->
-  <section class="py-5">
-    <div class="container">
-      <h1 class="display-4">Los mejores recambios para tu vehículo</h1> 
-      <p class="lead"> Histórica Gama italiana de automóviles, bajo la que se comercializan vehículos desde 1899, origen del mayor grupo industrial italiano, Fiat S.p.A., propiedad de Stellantis.</p>
-    </div>
-  </section>
-
-  <div class="container">
-
-    <div class="row">
 
         <div class="col-lg">
 
-            <div class="card img-fluid" style="width:400px">
-                <img class="card-img-top" src="./assets/img/motorcard.jpg" alt="Card image" style="width:100%">
-                <div class="card-body">
-                    <ul class="list-group">
-                        <li id="cartaA" class="list-group-item"><h4 class="card-title">Motor Daimler-Mercedes-Benz</h4></li>
-                        
-                            
-
-                            
-                            
-                        
-
-                    </ul>
-
-                    <br>
-
-                    <a href="./29P.php" class="btn btn-danger">Acceder al modelo</a>
-
-
-                </div>
-              </div>
-            
-        </div>
-
-        <div class="col-lg">
-
-            <div class="card img-fluid" style="width:400px">
-                <img class="card-img-top" src="./assets/img/levas.jpg" alt="Card image" style="width:100%">
-                <div class="card-body">
-                    <ul class="list-group">
-                        <li id="cartaA" class="list-group-item"><h4 class="card-title">SEALEY: Pivote de detención-árbol de levas</h4></li>
-                        
-
-                        
-                        
-
-                    </ul>
-
-
-                    <br>
-
-                    <a href="./23P.php" class="btn btn-danger">Acceder al modelo</a>
-
-                </div>
-              </div>
-
-
-            
-        </div>
-
-
-    </div>
-
-    <br>
-
-        
-        <div class="row">
-
-          
-
-        <div class="col-lg">
-
-            <div class="card img-fluid" style="width:400px">
-                <img class="card-img-top" src="./assets/img/cajacambios.jpg" alt="Card image" style="width:100%">
-                <div class="card-body">
-                    <ul class="list-group">
-                        <li id="cartaA" class="list-group-item"><h4 class="card-title">Caja de cambios - Seat CX</h4></li>
-                        
-                            
-
-                            
-                            
-                        
-
-                    </ul>
-
-                    <br>
-
-                    <a href="./26P.php" class="btn btn-danger">Acceder al modelo</a>
-
-
-                </div>
-            </div>
-            
-       
-            </div>
-
-        <div class="col-lg">
-
-            <div class="card img-fluid" style="width:400px">
-                <img class="card-img-top" src="./assets/img/transmision.jpg" alt="Card image" style="width:100%">
-                <div class="card-body">
-                    <ul class="list-group">
-                        <li id="cartaA" class="list-group-item"><h4 class="card-title">Transmisión-RepSet</h4></li>
-               
-                    </ul>
-
-                    <br>
-
-                    <a href="./24P.php" class="btn btn-danger">Acceder al modelo</a>
-
-
-                </div>
-              </div>
-            
-        </div>
-
-        </div>
-
-    </div>  
-    
-
+<div style="margin-top: 110px;" class="card">
+  <div class="card-body">
+    <ul>
+      <li style="list-style: none;" id="listars5"></li>
+    </ul>
   </div>
 
-  <br><br>
+
+</div>
+
+
+</div>
+</div>
+
+</div>
+  
+   
+
+
+
+  
+  
+
 
 
   <div class="footer-dark" style="background-color: rgb(32, 32, 32);">
@@ -284,11 +192,10 @@ $_SESSION["pagina"]="piezasImp.php";
     </footer>
   </div>
 
+  
 
 
-
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
 
@@ -300,9 +207,8 @@ $_SESSION["pagina"]="piezasImp.php";
    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
    <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>   
-        
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
     </body>
 </html>

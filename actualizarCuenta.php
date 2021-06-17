@@ -1,5 +1,11 @@
 
 
+<?php
+
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -211,15 +217,6 @@ $("#enviar").click(function(){
         errores2+="<p align='left'>-No ha introducido nada en el campo de la contraseña</p> ";
         // falta comparar con la otra contraseña "ccontra"
       }
-      if($("#contrasena2").val()==""){
-        errores2+="<p align='left'>-No ha introducido nada en el campo de la contraseña</p> ";
-        // falta comparar con la otra contraseña "ccontra"
-      }
-      if($("#contrasena2").val()!==$("#contrasena").val()){
-        errores2+="<p align='left'>-No coinciden las contraseñas \n";
-        // falta comparar con la otra contraseña "ccontra"
-      }
-
       if(!$("#nombrecomp").val().match(exp3)){
         errores2+="<p align='left'>-No ha introducido de manera correcta el nombre completo</p>";
       }
@@ -230,7 +227,7 @@ $("#enviar").click(function(){
         errores2+="<p align='left'>-No ha introducido de manera correcta el nombre de usuario</p> ";
       }
       if($("#nombusuario").val()==""){
-        errores2+="<p align='left'>-No ha introducido nada en el campo del nombre de usuario</p> ";
+        errores2+="<p align='left'>-No ha introducido nada en el campo del nobre de usuario</p> ";
 
       }if(!$("#telefono").val().match(exp5)){
         errores2+="<p align='left'>-No ha introducido de manera correcta el teléfono</p> ";
@@ -257,13 +254,13 @@ $("#enviar").click(function(){
       
       }
       else{
-        registrarse();
+        actualizar();
       }
     })
 
   })
 
-    function registrarse(){
+    function actualizar(){
             var email=$("#email").val();
             var contrasena=$("#contrasena").val();
             //var ccontra=$("#contrasena").val();
@@ -275,7 +272,7 @@ $("#enviar").click(function(){
 
 
             var peticion = $.ajax({
-            url: "registrese.php",
+            url: "actualizarCuenta2.php",
             type: "POST",
             async: true, // no es obligario es asincrono por defecto
             data: { //Variable que vamos a mandar al servidor
@@ -290,7 +287,7 @@ $("#enviar").click(function(){
             success: function(data) {
               console.log(data);
               Swal.fire({
-              title: '¡Usted se ha registrado Correctamente!',
+              title: '¡Usted ha actualizado su cuenta Correctamente!',
               //text: errores2,
               icon: 'success',
               backdrop:false,
@@ -298,9 +295,9 @@ $("#enviar").click(function(){
               background: '#EAE7EC',
               width: '600px',
               showConfirmButton: false,
-              html: 'Será redirigido en unos segundos al inicio de sesión.'
+              html: 'Será redirigido en unos segundos.'
               })
-              setTimeout(() => {  window.location.href="iniciarsesion.php"; }, 2500);
+              setTimeout(() => {  window.location.href="index.php"; }, 2500);
               
 
             }
@@ -311,67 +308,141 @@ $("#enviar").click(function(){
 </head>
 
 <body>
-<div class="container">
-    <div class="title">Registro</div>
-    <div class="content">
-        <div class="user-details">
-          <div class="input-box">
-            <span class="details">Nombre Completo</span>
-            <input type="text" id="nombrecomp" name="nombrecomp" placeholder="Introduzca su nombre" >
-          </div>
-          <div class="input-box">
-            <span class="details">Nombre de Usuario</span>
-            <input type="text" id="nombusuario" name="nombusuario" placeholder="Introduzca su nombre de usuario" >
-          </div>
-          <div class="input-box">
-            <span class="details">Email</span>
-            <input type="text" id="email" name="email" placeholder="Introduzca su email" >
-          </div>
-          <div class="input-box">
-            <span class="details">Teléfono Móvil</span>
-            <input type="text" id="telefono" name="telefono" placeholder="Introduzca su teléfono" >
-          </div>
-          <div class="input-box">
-            <span class="details">Contraseña</span>
-            <input type="text" id="contrasena" name="contrasena" placeholder="Contraseña(9 Dígitos)" >
-          </div>
-          <div class="input-box">
-            <span class="details">Confirmar Contraseña</span>
-            <input type="text" id="contrasena2" name="contrasena2" placeholder="Confirme su contraseña" >
-          </div>
-          <div class="input-box address">
-            <span class="details">Dirección de Facturación</span>
-            <input type="text" id="direccion" name="direccion" placeholder="Introduzca su dirección" >
-          </div>
 
-        </div>
-        <div class="gender-details">
-          <input type="radio" name="gender" id="dot-1" value="Femenino">
-          <input type="radio" name="gender" id="dot-2" value="Masculino">
-          <input type="radio" name="gender" id="dot-3" value="Nocontesta">
-          <span class="gender-title">Género</span>
-          <div class="category">
-            <label for="dot-1">   
-            <span class="dot one"></span>
-            <span class="gender">Mujer</span>
-          </label>
-          <label for="dot-2">
-            <span class="dot two"></span>
-            <span class="gender">Hombre</span>
-          </label>
-          <label for="dot-3">
-            <span class="dot three"></span>
-            <span class="gender">N/A</span>
-            </label>
-          </div>
-        </div>
-        
 
-        <div class="button">
-          <input type="submit" id="enviar" value="Registrate">
-        </div>
-    </div>
-  </div>
+
+
+
+  <?php
+
+   
+    $iduser=$_SESSION["sesion3"];
+  require("funcionConexion.php");
+  $con=conexion("pap");
+  $acentos = mysqli_query($con,"SET NAMES 'utf8'");
+
+  $accion="SELECT * FROM usuarios where id_usuario='$iduser'";
+  $result=mysqli_query($con,$accion);
+  $cantidad= mysqli_num_rows($result);
+
+
+          for($i=0;$i<$cantidad;$i++){
+          $datos=mysqli_fetch_row($result);
+
+          echo "<div class='container'>
+          <div class='title'>Actualiza tu cuenta</div>
+          <div class='content'>
+              <div class='user-details'>
+                <div class='input-box'>
+                  <span class='details'>Nombre Completo</span>
+                  <input type='text' id='nombrecomp' name='nombrecomp' value=".$datos[3]." >
+                </div>
+                <div class='input-box'>
+                  <span class='details'>Nombre de Usuario</span>
+                  <input type='text' id='nombusuario' name='nombusuario' value='".$datos[4]."' >
+                </div>
+                <div class='input-box'>
+                  <span class='details'>Email</span>
+                  <input type='text' id='email' name='email' value='$datos[1]'>
+                </div>
+                <div class='input-box'>
+                  <span class='details'>Teléfono Móvil</span>
+                  <input type='text' id='telefono' name='telefono' value='$datos[7]' >
+                </div>
+                <div class='input-box'>
+                  <span class='details'>Contraseña</span>
+                  <input type='text' id='contrasena' name='contrasena' value='$datos[2]'>
+                </div>
+                <div class='input-box address'>
+                  <span class='details'>Dirección de Facturación</span>
+                  <input type='text' id='direccion' name='direccion' value='$datos[6]' >
+                </div>
+      
+              </div>";
+              if($datos[5]=="Hombre"){
+                echo "<div class='gender-details'>
+                <input type='radio' name='gender' id='dot-1' value='Femenino' >
+                <input type='radio' name='gender' id='dot-2' value='Masculino' checked>
+                <input type='radio' name='gender' id='dot-3' value='Nocontesta'>
+                <span class='gender-title'>Género</span>
+                <div class='category'>
+                  <label for='dot-1'>   
+                  <span class='dot one'></span>
+                  <span class='gender'>Mujer</span>
+                </label>
+                <label for='dot-2'>
+                  <span class='dot two'></span>
+                  <span class='gender'>Hombre</span>
+                </label>
+                <label for='dot-3'>
+                  <span class='dot three'></span>
+                  <span class='gender'>N/A</span>
+                  </label>
+                </div>
+              </div>";
+              }
+              else if($datos[5]=="Mujer"){
+                echo "<div class='gender-details'>
+                <input type='radio' name='gender' id='dot-1' value='Femenino' checked>
+                <input type='radio' name='gender' id='dot-2' value='Masculino' >
+                <input type='radio' name='gender' id='dot-3' value='Nocontesta'>
+                <span class='gender-title'>Género</span>
+                <div class='category'>
+                  <label for='dot-1'>   
+                  <span class='dot one'></span>
+                  <span class='gender'>Mujer</span>
+                </label>
+                <label for='dot-2'>
+                  <span class='dot two'></span>
+                  <span class='gender'>Hombre</span>
+                </label>
+                <label for='dot-3'>
+                  <span class='dot three'></span>
+                  <span class='gender'>N/A</span>
+                  </label>
+                </div>
+              </div>";
+              }
+              else{
+                echo "<div class='gender-details'>
+                <input type='radio' name='gender' id='dot-1' value='Femenino'>
+                <input type='radio' name='gender' id='dot-2' value='Masculino' >
+                <input type='radio' name='gender' id='dot-3' value='Nocontesta' checked>
+                <span class='gender-title'>Género</span>
+                <div class='category'>
+                  <label for='dot-1'>   
+                  <span class='dot one'></span>
+                  <span class='gender'>Mujer</span>
+                </label>
+                <label for='dot-2'>
+                  <span class='dot two'></span>
+                  <span class='gender'>Hombre</span>
+                </label>
+                <label for='dot-3'>
+                  <span class='dot three'></span>
+                  <span class='gender'>N/A</span>
+                  </label>
+                </div>
+              </div>";
+              }
+              
+              echo "<div class='button'>
+                <input type='submit' id='enviar' value='Actualiza tu cuenta'>
+              </div>
+          </div>
+        </div>";
+          
+
+          }
+          
+
+      
+
+
+  ?>
+
+
+
 
 </body>
 </html>

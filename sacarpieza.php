@@ -2,7 +2,7 @@
 
         //$accion="select distinct origen from vuelos";
         
-    
+        session_start();
         $marca=$_POST['marca'];
         require("funcionConexion.php");
         $con=conexion("pap"); //La base de datos
@@ -14,7 +14,14 @@
 
         for($i=0;$i<$cantidad;$i++){
                 $datos=mysqli_fetch_array($result);
-                echo "<h3>Información de la pieza:</h3> <br> <b>Modelo:</b> $datos[modelo] <br><hr> <b>Precio: </b> Desde $datos[precio] € <br><hr> <b>Especificaciones:</b> $datos[especificaciones] <br><hr><a style='margin-left:40px' href='./anadirCarrito.php?id=$datos[id_pieza]' class='btn btn-primary'>Añadir al carrito</a> ";
+                if(isset($_SESSION["sesion1"])){
+                        echo "<h3>Información de la pieza:</h3> <br> <b>Modelo:</b> $datos[modelo] <br><hr> <b>Precio: </b> Desde $datos[precio] € <br><hr> <b>Especificaciones:</b> $datos[especificaciones] <br><hr><a style='margin-left:40px' href='./anadirCarrito.php?id=$datos[id_pieza]' class='btn btn-primary'>Añadir al carrito</a> ";
+
+                }
+                else{
+                        echo "<h3>Información de la pieza:</h3> <br> <b>Modelo:</b> $datos[modelo] <br><hr> <b>Precio: </b> Desde $datos[precio] € <br><hr> <b>Especificaciones:</b> $datos[especificaciones] <br><hr> <h6 style= 'color: red'> Inicie sesión para adquirir el producto</h6> ";
+
+                }
         }
         mysqli_close($con);
 ?>

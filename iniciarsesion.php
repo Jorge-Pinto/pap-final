@@ -1,5 +1,8 @@
-
-
+<?php
+ob_start();
+session_start();
+$pagina=$_SESSION["pagina"];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -186,7 +189,7 @@ body{
 
   <script>
 
-
+var error=0;
     $(document).ready(function(){
       $("#enviar").click(function(){
             var exp1=/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
@@ -219,26 +222,85 @@ body{
             })
             }
             else{
-              $("#formu").submit();
+              
+           
+                mensaje($('#email').val())
             }
       })
     })
+  
+    var j=0;
+      var contra="";
+function mensaje(email) {
+if(error==0){
+   
+   
+        //GUARDAMOS EN UNA VARIABLE EL RESULTADO DE LA CONSULTA AJAX    
+ var parametros = {
+                "email" : email
+                
+        };
+        var mensajes = $.ajax({
+              data:  parametros, //datos que se envian a traves de ajax
+            type: "POST",    
+            url: './inicioSesion.php', //indicamos la ruta donde se genera la hora
+                dataType: 'text',//indicamos que es de tipo texto plano
+                async: false     //ponemos el parámetro asyn a falso
+        }).responseText;
+
+        //actualizamos el div que nos mostrará la hora actual
+      contra= mensajes;
+
+    if($("#contrasena").val()==contra){
+
 
     
+ var errores2="";
+           Swal.fire({
+              title: '¡Usted ha iniciado sesión correctamente!',
+              //text: errores2,
+               html: errores2,
+              icon: 'success',
+              backdrop:false,
+              position: 'top',
+              background: '#EAE7EC',
+              width: '600px',
+              showConfirmButton: false,
+              html: 'Será redirigido en unos segundos.'
+              })
+              setTimeout(() => {  window.location.href=<?php echo json_encode($pagina); ?> }, 2500);
+    
+       
+    }else{ 
+        var errores2="";
+          Swal.fire({
+              title: '¡Email o contraseña no válidos!',
+              //text: errores2,
+              html: "Vuelva a introducir sus datos, e inténtelo de nuevo",
+              icon: 'error',
+              confirmButtonText: 'Vale',
+              backdrop:false,
+              position: 'top',
+              background: '#EAE7EC',
+              width: '600px',
+              
+            })
+    }
+    }
+    }
+
+    </script>
 
 
-
-  </script>
 
 
 
 </head>
 <body>
-  
   <div class="container">
+
     <div class="title">Iniciar Sesión</div>
     <div class="content">
-    <form id="formu" action="inicioSesion.php" method="POST">
         <div class="user-details">
           <div class="input-box">
             <span class="details">Correo electrónico</span>
@@ -246,20 +308,32 @@ body{
           </div>
           <div class="input-box">
             <span class="details">Contraseña</span>
-            <input type="number" id="contrasena" name="contrasena" placeholder="Introduce tu contraseña">
+            <input type="number" id="contrasena" name="contrasena" placeholder="Contraseña(9 Dígitos)">
           </div>
     
         <div class="button">
-        <input type="button" id="enviar" value="Iniciar Sesión">
-        
+        <input type="button"  id="enviar" name="enviar" value="Iniciar Sesión">
+        <!--onclick="mensaje($('#email').val())"-->
         </div>
-      </form>
         </div>
         
         <a href="registrarse.php">¿Todavía no estás registrado? Haga click Aquí.</a><br><br>
         <a href="olvidocontrasena.php">¿Has olvidado tu contraseña?</a>
-      
+     
   </div>
+
+    </div>  
+    
+<script>
+            
+
+
+
+
+
+  </script>
+  
+
 
 
     <!-- Bootstrap core JS-->
@@ -275,3 +349,6 @@ body{
     
 </body>
 </html>
+<?php
+ob_end_flush();
+?>

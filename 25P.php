@@ -2,7 +2,7 @@
 <?php
 
 session_start();
-$_SESSION["pagina"]="Mazda.php";
+$_SESSION["pagina"]="25P.php";
 
 ?>
 
@@ -24,8 +24,9 @@ $_SESSION["pagina"]="Mazda.php";
         <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css"
             rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/stylemazda.css" rel="stylesheet" />
+        <link href="css/stylemodels.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
@@ -75,6 +76,35 @@ $_SESSION["pagina"]="Mazda.php";
     </div>
   </nav>
 
+        <script>
+
+
+          $(document).ready(function(){
+            infoaudirs5();
+
+          })
+
+          function infoaudirs5(){
+            var marca="Batería";
+            var peticion = $.ajax({
+            url: "sacarpieza.php",
+            type: "POST",
+            async: true, // no es obligario es asincrono por defecto
+            data: { //Variable que vamos a mandar al servidor
+               marca: marca
+            },
+            success: function() { //cuando nos devuelve una respuesta favorable entra en el success
+            $("#listars5").html(peticion.responseText);
+        }
+        }
+
+        )}
+
+
+        </script>
+
+
+
     </head>
     
 
@@ -83,112 +113,45 @@ $_SESSION["pagina"]="Mazda.php";
 
   <body>
   
-  
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-      <ol class="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-      </ol>
-      <div class="carousel-inner" role="listbox">
-        <!-- Slide Two - Set the background image for this slide in the line below -->
-        <div class="carousel-item active" style="background-image: url('./assets/img/logomazda.jpg')">
-          <div class="carousel-caption d-none d-md-block">
-            <p class="lead"> Desde 1960, creando coches de alta gama.</p>
-          </div>
+    <div class="container" style="background-color: rgb(214, 214, 214);">
+      <div class="row">
+        <div class="col-lg" style="margin-right: 50px;">
+
+                          <!-- Import the component -->
+                <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+                <!-- Use it like any other HTML element -->
+                <model-viewer id="hola" src="./3DbateriaA/scene.gltf" alt=" A Range-Rover-Evoque"  auto-rotate camera-controls></model-viewer>
+
+
         </div>
-        <!-- Slide Three - Set the background image for this slide in the line below -->
-        <div class="carousel-item" style="background-image: url('./assets/img/cochesmazda.jpg')">
-          <div class="carousel-caption d-none d-md-block">
-            <p class="lead"> Disfruta de nuestros nuevos subs.</p>
-          </div>
+
+
+    <div class="col-lg">
+
+      <div style="margin-top: 110px;" class="card">
+        <div class="card-body">
+          <ul>
+            <li style="list-style: none;" id="listars5"></li>
+          </ul>
         </div>
+
+
       </div>
-      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
+
+
     </div>
+    </div>
+
+    </div>
+  
+   
+
 
 
   
   
-  <!-- Page Content -->
-  <section class="py-5">
-    <div class="container">
-      <h1 class="display-4">La Gama SUV </h1> 
-      <p class="lead">Esta gama es capaz de satisfacer las necesidades prácticas y pasionales de cualquier conductor.La firma japonesa pone sobre la mesa unas motorizaciones eficientes y unas excelentes calidades interiores envueltas en el diseño KODO, que se caracteriza por sus líneas puras y refinadas.</p>
-    </div>
-  </section>
 
-  <div class="container">
-
-    <div class="row">
-
-        <div class="col-lg-6">
-
-            <div class="card img-fluid" style="width:500px">
-                <img class="card-img-top" src="./assets/img/mazda3.jpg" alt="Card image" style="width:100%">
-                <div class="card-body">
-                    <ul class="list-group">
-                        <li id="cartaA" class="list-group-item"><h4 class="card-title">Mazda 3</h4></li>
-                        <li id="cartaA" class="list-group-item">Suv Familiar</li>
-                        <li id="cartaA" class="list-group-item">5 Puertas</li>
-                        <li id="cartaA" class="list-group-item">Colores Disponibles: <div style="display:inline-flex;">
-                            <div id="color2"></div>
-                            <div id="color3"></div>
-                            <div id="color6"></div>
-                            
-                            </div>
-                        </li>
-
-                    </ul>
-
-                    <br>
-
-                    <a href="./14V.php" class="btn btn-danger">Acceder al modelo</a>
-
-
-                </div>
-              </div>
-            
-        </div>
-
-        <div class="col-lg-6">
-
-            <div class="card img-fluid" style="width:500px">
-                <img class="card-img-top" src="./assets/img/mazda-rx7.jpg " alt="Card image" style="width:100%">
-                <div class="card-body">
-                    <ul class="list-group">
-                        <li id="cartaA" class="list-group-item"><h4 class="card-title">Mazda-RX7</h4></li>
-                        <li id="cartaA" class="list-group-item">Deportivo RX</li>
-                        <li id="cartaA" class="list-group-item">3 Puertas</li>
-                        <li id="cartaA" class="list-group-item">Colores Disponibles: <div id="cartaaudi"><div id="color1"></div>
-                            <div id="color6"></div>
-                            <div id="color2"></div>
-                            
-                            </div>
-                        </li>
-
-                    </ul>
-
-                    <br>
-
-                    <a href="./21V.php" class="btn btn-danger">Acceder al modelo</a>
-                </div>
-              </div>
-
-
-            
-        </div>
-    </div>
-
-  </div>
-
-  <br><br>
 
 
   <div class="footer-dark" style="background-color: rgb(32, 32, 32);">
@@ -223,15 +186,14 @@ $_SESSION["pagina"]="Mazda.php";
         </div>
         <p class="copyright">Pieza por Pieza © 2021</p>
       </div>
-      
     </footer>
   </div>
 
+  
 
 
 
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
 
@@ -243,10 +205,8 @@ $_SESSION["pagina"]="Mazda.php";
    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
    <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-        <!-- Core theme JS-->
-        
     </body>
 </html>

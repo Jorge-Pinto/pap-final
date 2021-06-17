@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-$_SESSION["pagina"]="0";
+$_SESSION["pagina"]="index.php";
 
 ?>
  <!DOCTYPE html>
@@ -47,22 +47,44 @@ $_SESSION["pagina"]="0";
            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#productos">Nuestros Productos</a></li>
            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#footer">Contacto</a></li>
            <?php
-              if(isset($_SESSION["sesion1"])){
+
+              
+
+              if(isset($_SESSION["sesion1"]) && $_SESSION["sesion1"]!="adminxx"){
                 echo "<li class='nav-item'><a href='carrito.php' class='nav-link navbar-link-2 waves-effect'><i class='fas fa-shopping-cart pl-0'></i></a></li>
                 <li class='nav-item dropdown'> 
                 <a style='cursor:pointer' class='nav-link dropdown-toggle' data-toggle='dropdown'>".$_SESSION["sesion1"]."</a>
                 <div class='dropdown-menu' style='background-color:#c3cace'>
-                <a class='dropdown-item' href='#'>Actualiza tu cuenta</a>
-                <a class='dropdown-item' href='#'>Mis compras</a>
+                <a class='dropdown-item' href='actualizarCuenta.php'>Actualiza tu cuenta</a>
+                <a class='dropdown-item' href='listadoCompras.php'>Mis compras</a>
                 <a class='dropdown-item' href='cierreSesion.php'>Cerrar Sesión</a>
               </div>";
                 
 
                 //echo "<a class='nav-link js-scroll-trigger' href='cierreSesion.php'>".$_SESSION["sesion1"]."</a>";
 
-              }else{
-                echo "<li class='nav-item'><a class='nav-link js-scroll-trigger' href='./iniciarsesion.php'>Iniciar sesion</a></li>";
               }
+
+              if(isset($_SESSION["sesion1"]) && $_SESSION["sesion1"]=="adminxx"){
+                echo "<li class='nav-item'><a class='nav-link js-scroll-trigger' href='./admin.php'>Panel de Administración</a></li>
+                <li class='nav-item dropdown'> 
+                <a style='cursor:pointer' class='nav-link dropdown-toggle' data-toggle='dropdown'>".$_SESSION["sesion1"]."</a>
+                <div class='dropdown-menu' style='background-color:#c3cace'>
+                <a class='dropdown-item' href='actualizarCuenta.php'>Actualiza tu cuenta</a>
+                <a class='dropdown-item' href='listadoCompras.php'>Mis compras</a>
+                <a class='dropdown-item' href='cierreSesion.php'>Cerrar Sesión</a>
+              </div>";
+              }
+
+              if(empty($_SESSION["sesion1"])){
+                echo "<li class='nav-item'><a class='nav-link js-scroll-trigger' href='./iniciarsesion.php'>Iniciar sesion</a></li>";
+
+              }
+                
+
+                //echo "<a class='nav-link js-scroll-trigger' href='cierreSesion.php'>".$_SESSION["sesion1"]."</a>";
+
+              
             ?>
             </li>
          </ul>
@@ -75,7 +97,7 @@ $_SESSION["pagina"]="0";
      <div id="inicio"></div>
      <div class="overlay"></div>
      <video style="width: 100%;" playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
-       <source src="./assets/img/Nuevo Audi A3 Sportback, conéctate a la emoción..mp4" type="video/mp4">
+       <source src="../startbootstrap-creative-gh-pages/assets/img/hola (online-video-cutter.com).mp4" type="video/mp4">
      </video>
      <div class="container h-100">
        <div class="d-flex h-100 text-center align-items-center">
@@ -254,7 +276,7 @@ $_SESSION["pagina"]="0";
          </div>
          <div class="col-lg-4 col-sm-6" style="text-align: center;">
            <a class="portfolio-box" href="assets/img/portfolio/fullsize/3.jpg">
-            <a href="./Porsche.php"><img class="img-fluid" src="./assets/img/porsche.jpg" alt="" /></a>
+            <a href="./Porsche.php"><img class="img-fluid" src="./assets/img/fotoporsche.png" alt="" /></a>
 
            </a>
          </div>
@@ -266,7 +288,7 @@ $_SESSION["pagina"]="0";
          </div>
          <div class="col-lg-4 col-sm-6" style="text-align: center;">
            <a class="portfolio-box" href="assets/img/portfolio/fullsize/5.jpg">
-            <a href="./Fiat.php"><img class="img-fluid" src="./assets/img/fiat.jpg" alt="" /></a>
+            <a href="./Fiat.php"><img class="img-fluid" src="./assets/img/fotofiat.jpg" alt="" /></a>
 
            </a>
          </div>

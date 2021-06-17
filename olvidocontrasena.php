@@ -251,6 +251,18 @@ body{
               setTimeout(() => {  window.location.href="iniciarsesion.php"; }, 2500);
 
         },
+        error: function(){
+          Swal.fire({
+              title: '¡Los datos que ha introducido no coinciden!',
+              icon: 'error',
+              backdrop:false,
+              position: 'top',
+              background: '#EAE7EC',
+              showConfirmButton: false,
+              width: '600px',
+              })
+
+        }
 
         //error: function() { 
          

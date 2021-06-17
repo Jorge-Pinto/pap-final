@@ -2,7 +2,7 @@
 <?php
 
 session_start();
-$_SESSION["pagina"]="9";
+$_SESSION["pagina"]="complementos.php";
 
 ?>
 
@@ -28,39 +28,38 @@ $_SESSION["pagina"]="9";
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Pieza por Pieza</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+         
+          <li class="nav-item">
+            <a class="nav-link" href="index.php#inicio">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.php#quienesom">Quienes Somos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.php#productos">Nuestros Productos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.php#footer">Contacto</a>
+          </li>
 
-
-        <!-- Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-          <div class="container">
-            <a class="navbar-brand" href="#">Pieza por Pieza</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-              <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                  <a class="nav-link" href="./index.html">Inicio
-                        <span class="sr-only">(current)</span>
-                      </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Quienes Somos</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Nuestros Productos</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Contacto</a>
-                </li>
-      
-                <li class="nav-item dropdown"> 
+          <li class="nav-item dropdown"> 
            <?php
               if(isset($_SESSION["sesion1"])){
-                echo "<a style='cursor:pointer' class='nav-link dropdown-toggle' data-toggle='dropdown'>".$_SESSION["sesion1"]."</a>
+                echo "<li class='nav-item'><a href='carrito.php' class='nav-link navbar-link-2 waves-effect'><i class='fas fa-shopping-cart pl-0'></i></a></li>
+                <li class='nav-item dropdown'> 
+                <a style='cursor:pointer' class='nav-link dropdown-toggle' data-toggle='dropdown'>".$_SESSION["sesion1"]."</a>
                 <div class='dropdown-menu' style='background-color:#c3cace'>
-                <a class='dropdown-item' href='#'>Actualiza tu cuenta</a>
-                <a class='dropdown-item' href='#'>Mis compras</a>
+                <a class='dropdown-item' href='actualizarCuenta.php'>Actualiza tu cuenta</a>
+                <a class='dropdown-item' href='listadoCompras.php'>Mis compras</a>
                 <a class='dropdown-item' href='cierreSesion.php'>Cerrar Sesión</a>
               </div>";
                 
@@ -72,10 +71,10 @@ $_SESSION["pagina"]="9";
               }
             ?>
             </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
 
     </head>
@@ -102,7 +101,7 @@ $_SESSION["pagina"]="9";
         <!-- Slide Three - Set the background image for this slide in the line below -->
         <div class="carousel-item" style="background-image: url('./assets/img/fondobateria.jpg')">
           <div class="carousel-caption d-none d-md-block">
-            <p class="lead"> Empresa multinacional alemana fabricante de automóviles de alta gama y deportivos.</p>
+            <p class="lead"> Los mejores complementos para tu vehículo, en Pieza por Pieza.</p>
           </div>
         </div>
       </div>
