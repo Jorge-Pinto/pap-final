@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body{
+            margin: 0;
+            background-image: url("fondo1.jpg");
+            background-size: 100%;
+        }
+
+        #usuarioregis{
+            display: none;
+        }
+
+        #usuarioregis2{
+            list-style: none;
+        }
+
+        #usuarioregis3{
+            list-style: none;
+        }
+
+        #usuarioregis4{
+            list-style: none;
+        }
+
+        #usuarioregis5{
+            list-style: none;
+        }
+
+
+
+        #regist{
+            display: none;
+        }
+
+        #actualizado{
+            display: none;
+        }
+
+        #usuarioact{
+            display: none;
+        }
+
+        #claveRecordada{
+            display: none;
+        }
+
+        #cccid{
+            display: none;
+        }
+
+        #bajada{
+            display: none;
+        }
+
+        #recordar2{
+            display: none;
+        }
+
+        #calculadora{
+            display: none;
+        }
+
+    </style>
+
+    <div>
+        <nav style="background-color: rgb(156, 87, 98); height: 23px; text-align: center;">
+            <ul>
+                <li style="color: black; list-style: none;"><h3>La Alimentación y la Salud</h3></li>
+            </ul>
+        </nav>
+    </div>
+
+    <script type="text/javascript" src="jquery-3.5.1.js"></script>
+
+    <script>
+
+    $(document).ready(function() {
+        cookies();
+
+        $( "#actualizare" ).prop( "disabled", true );
+        $( "#bajar" ).prop( "disabled", true );
+
+
+        $("#registt").click(function(){
+            var exp4=/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+            var exp5=/^[0-9]{9}$/;
+            var exp6=/^\d{4}([\-/.])(0?[1-9]|1[1-2])\1(3[01]|[12][0-9]|0?[1-9])$/;
+            var errores2="";
+            if(!$("#correo").val().match(exp4)){
+                errores2+="No ha introducido de manera correcta el correo \n";
+            }
+            if($("#correo").val()==""){
+                errores2+="No ha introducido nada en el campo del correo \n";
+            }
+            if(!$("#contraseña").val().match(exp5)){
+                errores2+="No ha introducido de manera correcta la contraseña  \n";
+            }
+            if($("#contraseña").val()==""){
+                errores2+="No ha introducido nada en el campo de la contraseña  \n";
+            }
+            if($("#nombre").val()==""){
+                errores2+="No ha introducido nada en el campo del nombre  \n";
+            }
+            if($("#fecha").val()==""){
+                errores2+="No ha introducido nada en el campo de la fecha  \n";
+            }
+            if(!$("#fecha").val().match(exp6)){
+                errores2+="No ha introducido bien el campo de la fecha  \n";
+            }
+            if($("#ccid").val()==""){
+                errores2+="No ha introducido nada en el campo del CCID  \n";
+            }
+            if($("#sexo").val()==""){
+                errores2+="No ha introducido nada en el campo del sexo  \n";
+            }
+
+            if(errores2!=""){
+                alert("Ha cometido los siguientes errores \n"+errores2);
+            }
+            else{
+                registrarse();
+            }
+        })
+
+        $("#envio").click(function(){
+            var exp4=/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+            var exp5=/^[0-9]{9}$/;
+            var errores="";
+            if(!$("#email").val().match(exp4)){
+                errores+="No ha introducido bien el campo del email \n";
+            }
+            if(!$("#clave").val().match(exp5)){
+                errores+="No ha introducido bien el campo de la clave \n";
+            }
+            if($("#email").val()==""){
+                errores+="No ha introducido nada en el campo del email \n";
+            }
+            if($("#clave").val()==""){
+                errores+="No ha introducido nada en el campo de la clave";
+            }
+            if(errores!=""){
+                alert("Ha cometido los siguientes errores \n"+errores);
+            }
+            else{
+                iniciarsesion();
+                $("#usuarioregis").show();
+                $( "#actualizare" ).prop( "disabled", false );
+                $( "#bajar" ).prop( "disabled", false );
+                $("#calculadora").show();
+
+
+            }
+        })
+
+
+
+        $("#registrar").click(function(){
+            $("#regist").show();
+        })
+
+        $("#volv").click(function(){
+            $("#regist").hide();
+        })
+
+        $("#volver").click(function(){
+            $("#actualizado").hide();
+        })
+        $("#volve").click(function(){
+            $("#actualizado").hide();
+        })
+
+        $("#actualizare").click(function(){
+            $("#actualizado").show();
+            $("#resp").hide();
+        })
+
+
+
+
+        $("#acts").click(function(){
+            var exp4=/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+            var exp5=/^[0-9]{9}$/;
+            var exp6=/^\d{4}([\-/.])(0?[1-9]|1[1-2])\1(3[01]|[12][0-9]|0?[1-9])$/;
+            var errores3="";
+            if(!$("#correo2").val().match(exp4)){
+                errores3+="No ha introducido de manera correcta el correo \n";
+            }
+            if($("#correo2").val()==""){
+                errores3+="No ha introducido nada en el campo del correo \n";
+            }
+            if(!$("#contraseña2").val().match(exp5)){
+                errores3+="No ha introducido de manera correcta la contraseña  \n";
+            }
+            if($("#contraseña2").val()==""){
+                errores3+="No ha introducido nada en el campo de la contraseña  \n";
+            }
+            if($("#nombre2").val()==""){
+                errores3+="No ha introducido nada en el campo del nombre  \n";
+            }
+            if($("#fecha2").val()==""){
+                errores3+="No ha introducido nada en el campo de la fecha  \n";
+            }
+            if(!$("#fecha2").val().match(exp6)){
+                errores3+="No ha introducido bien el campo de la fecha  \n";
+            }
+            if($("#ccid2").val()==""){
+                errores3+="No ha introducido nada en el campo del CCID  \n";
+            }
+            if($("#sexo2").val()==""){
+                errores3+="No ha introducido nada en el campo del sexo  \n";
+            }
+
+            if(errores3!=""){
+                alert("Ha cometido los siguientes errores \n"+errores3);
+            }
+            else{
+                actualizar();
+                $("#usuarioact").show();
+            }
+        })
+
+
+        $("#recordar1").click(function(){
+            var exp4=/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+            
+            var errores4="";
+            if(!$("#correo3").val().match(exp4)){
+                errores4+="No ha introducido bien el campo del email \n";
+            }
+            if($("#correo3").val()==""){
+                errores4+="No ha introducido nada en el campo del email \n";
+            }
+            if(errores4!=""){
+                alert(errores4);
+            }
+            else{
+                recuerdaClave();
+                $("#claveRecordada").show();
+
+            }
+           
+        })
+
+
+        $("#bajar").click(function(){
+            $("#bajada").show();
+        })
+        
+        $("#volve2").click(function(){
+            $("#bajada").hide();
+        })
+
+        $("#volve3").click(function(){
+            $("#recordar2").hide();
+        })
+
+        $("#recordar").click(function(){
+            $("#recordar2").show();
+        })
+
+
+        $("#darseBaja").click(function(){
+            darsedebaja();
+        })
+
+        $("#calcul").click(function(){
+            var errores5="";
+            var peso=$("#peso").val();
+            var altura=$("#altura").val();
+            if($("#peso").val()==""){
+                errores5+="No ha introducido nada en el campo del peso";
+            }
+            if($("#altura").val()==""){
+                errores5+="No ha introducido nada en el campo de la altura";
+            }
+            if(errores5!=""){
+                alert(errores5);
+            }
+            else{
+            var suma=66.473 + (13.752 * peso)+(5.0033 * altura)-(6.755 * 33) + "K/Cal";
+            $("#rmb").text(suma);
+            $("#rmb2").text(suma);
+
+        
+            }
+            
+        })
+
+        $("#actividad").change(function(){
+            var resultado=$('select[id=actividad]').val();
+            var peso=$("#peso").val();
+            var altura=$("#altura").val();
+            var suma=66.473 + (13.752 * peso)+(5.0033 * altura)-(6.755 * 33);
+            $('#cantactv').text(resultado);
+            var final=resultado*suma;
+            $("#resultadofinal").text(final);
+	    });
+
+        $("#guardarccid").click(function(){
+            actualizaccid();
+            $("#cccid").show();
+        })
+    })
+
+
+
+
+
+        function registrarse(){
+            var correo=$("#correo").val();
+            var contraseña=$("#contraseña").val();
+            var nombre=$("#nombre").val();
+            var sexo=$("#sexo").val();
+            var fecha=$("#fecha").val();
+            var ccid=$("#ccid").val();
+
+            var peticion = $.ajax({
+            url: "registrese.php",
+            type: "POST",
+            async: true, // no es obligario es asincrono por defecto
+            data: { //Variable que vamos a mandar al servidor
+                correo: correo,
+                contraseña: contraseña,
+                nombre: nombre,
+                sexo: sexo,
+                fecha: fecha,
+                ccid: ccid
+            },
+            success: function(data) { //cuando nos devuelve una respuesta favorable entra en el success
+            $("#resp").html(peticion.responseText);
+        }
+        })
+        } 
+
+
+        function iniciarsesion(){
+        var email=$("#email").val();
+        var clave=$("#clave").val();
+
+        var peticion = $.ajax({
+        url: "inicioSe.php",
+        type: "POST",
+        async: true, // no es obligario es asincrono por defecto
+        data: { //Variable que vamos a mandar al servidor
+        email: email,
+        clave: clave
+        },
+        success: function(data) { //cuando nos devuelve una respuesta favorable entra en el success
+        $("#usuarioregis2").html(peticion.responseText);
+    }
+    })
+    }   
+
+        function actualizar(){
+            var correo2=$("#correo2").val();
+            var contraseña2=$("#contraseña2").val();
+            var nombre2=$("#nombre2").val();
+            var sexo2=$("#sexo2").val();
+            var fecha2=$("#fecha2").val();
+            var ccid2=$("#ccid2").val();
+
+            var peticion = $.ajax({
+            url: "actualiza.php",
+            type: "POST",
+            async: true, // no es obligario es asincrono por defecto
+            data: { //Variable que vamos a mandar al servidor
+                correo2: correo2,
+                contraseña2: contraseña2,
+                nombre2: nombre2,
+                sexo2: sexo2,
+                fecha2: fecha2,
+                ccid2: ccid2
+            },
+            success: function(data) { //cuando nos devuelve una respuesta favorable entra en el success
+            $("#usuarioregis3").html(peticion.responseText);
+        }
+        })
+        } 
+
+
+        function darsedebaja(){
+            
+            var peticion = $.ajax({
+            url: "eliminar.php",
+            type: "POST",
+            async: true, // no es obligario es asincrono por defecto
+            data: { //Variable que vamos a mandar al servidor
+               
+            },
+            success: function() { //cuando nos devuelve una respuesta favorable entra en el success
+            $("#eliminado").html(peticion.responseText);
+        }
+        })
+        }
+
+
+        function recuerdaClave(){
+            var correo3=$("#correo3").val();
+            var peticion = $.ajax({
+            url: "recuerdaClave.php",
+            type: "POST",
+            async: true, // no es obligario es asincrono por defecto
+            data: { //Variable que vamos a mandar al servidor
+               correo3: correo3
+            },
+            success: function() { //cuando nos devuelve una respuesta favorable entra en el success
+            $("#usuarioregis4").html(peticion.responseText);
+        }
+        })
+        }
+
+        function actualizaccid(){
+            var resultadofinal=$("#resultadofinal").text();
+            var peticion = $.ajax({
+            url: "actualizarccid.php",
+            type: "POST",
+            async: true, // no es obligario es asincrono por defecto
+            data: { //Variable que vamos a mandar al servidor
+               resultadofinal: resultadofinal
+            },
+            success: function() { //cuando nos devuelve una respuesta favorable entra en el success
+            $("#usuarioregis5").html(peticion.responseText);
+        }
+        })
+        }
+
+        function cookies(){
+            
+            var peticion = $.ajax({
+            url: "cookie.php",
+            type: "POST",
+            async: true, // no es obligario es asincrono por defecto
+            data: { //Variable que vamos a mandar al servidor
+               
+            },
+            success: function() { //cuando nos devuelve una respuesta favorable entra en el success
+            $("#numerovisita").html(peticion.responseText);
+        }
+        })
+        }
+
+    </script>
+
+</head>
+
+<body>
+
+    <div id="container">
+        <b id="numerovisita"></b>
+        <h4>Para calcular su C.C.I.D(Consumo Calórico Ideal Diario) debe de identificarse como usuario:</h4><br>
+            <fieldset>
+                <legend>Login de usuario:</legend><br>
+                <div id="reg" style="text-align: center; background-color: rgb(156, 87, 98);"><br>
+                    <label for="email">Email: </label>
+                    <input type="text" id="email" name="email"><br><br>
+                    <label for="clave">Clave: </label>
+                    <input type="text" id="clave" name="clave"><br><br>
+                    <button id="envio">Enviar</button><br><br>
+                    
+                </div>
+                <div id="botones" style="text-align: center; margin-top: 10px;">
+                <button id="recordar">Recordar</button>
+                <button id="registrar">Registrarse</button>
+                <button id="actualizare">Actualizar</button>
+                <button id="bajar">Darse de baja</button>
+                </div>
+            </fieldset><br><br>
+
+            
+            <div id="regist" style="text-align: center;">
+                <fieldset>
+                    <legend>Registro de usuarios:</legend>
+
+                <label for="correo">Introduzca su email: </label>
+                <input type="text" id="correo" name="correo">
+                <label for="contraseña">Introduzca su contraseña: </label>
+                <input type="text" id="contraseña" name="contraseña"><BR><BR>
+                <label for="nombre">Introduzca su nombre: </label>
+                <input type="text" id="nombre" name="nombre">
+                <label for="sexo">Introduzca su sexo: </label>
+                <input type="text" id="sexo" name="sexo"><br><br>
+                <label for="fecha">Introduzca su fecha de nacimiento: </label>
+                <input type="text" id="fecha" name="fecha"><br><br>
+                <label for="ccid">Introduzca su CCID: </label>
+                <input type="text" id="ccid" name="ccid">
+                <button id="registt">Registrarse</button>
+                <button id="volv">Volver</button>
+
+
+            </fieldset>
+
+            </div>
+
+            <div id="actualizado" style="text-align: center;">
+                <fieldset>
+                    <legend>Actualización de datos de usuarios:</legend>
+
+                <label for="correo2">Introduzca su email: </label>
+                <input type="text" id="correo2" name="correo2">
+                <label for="contraseña2">Introduzca su contraseña: </label>
+                <input type="text" id="contraseña2" name="contraseña2"><BR><BR>
+                <label for="nombre2">Introduzca su nombre: </label>
+                <input type="text" id="nombre2" name="nombre2">
+                <label for="sexo2">Introduzca su sexo: </label>
+                <input type="text" id="sexo2" name="sexo2"><br><br>
+                <label for="fecha2">Introduzca su fecha de nacimiento: </label>
+                <input type="text" id="fecha2" name="fecha2"><br><br>
+                <label for="ccid2">Introduzca su CCID: </label>
+                <input type="text" id="ccid2" name="ccid2">
+                <button id="acts">Actualizar</button>
+                <button id="volve">Volver</button>
+
+
+            </fieldset>
+
+            </div>
+
+            <div id="calculadora">
+                <fieldset>
+                    <legend>Calculadora de CCID</legend>
+                    <p>RMB=66,473 + [13,752 x peso corporal<input type="text" id="peso" name="peso"> + [5,0033 x alt. cm <input type="text" id="altura" name="altura"> - [6,755 x edad 33]= <b id="rmb"></b></p><button id="calcul">Calcular RMB</button><br>
+                    <label for="actividad">Elige un tipo de actividad</label>
+                    <select name="actividad" id="actividad">
+                    <option value="1">Persona Inactiva: multiplicar el RMB por 1</option>
+                    <option value="1.2">Persona con actividad ligera: multiplicar el RMB por 1.2</option>
+                    <option value="1.4">Persona con actividad media: multiplicar el RMB por 1.4</option>
+                    <option value="1.6">Persona muy activa: multiplicar el RMB por 1.6</option>
+                    <option value="1.8">Persona con actividad extrema: multiplicar el RMB por 1.8</option>
+
+                    </select><b id="rmb2" name="rmb2"></b> x <b id="cantactv"></b> = <b id="resultadofinal"></b><br>
+                    <button id="guardarccid">Guardar CCID</button>
+
+                </fieldset>
+            </div>
+
+            <div id="recordar2" style="text-align: center;">
+                <fieldset>
+                    <legend>Recordar su Clave</legend>
+                <label for="correo3">Introduzca su email: </label>
+                <input type="text" id="correo3" name="correo3">
+                <button id="recordar1">Recordar Clave</button>
+                <button id="volve3">Volver</button>
+
+
+            </fieldset>
+
+            </div>
+
+
+            <div id="bajada" style="text-align: center;">
+                <fieldset>
+                    <legend>Baja Dato de Usuario</legend>
+
+                <button id="darseBaja">Darse de Baja</button>
+                <button id="volve2">Volver</button>
+
+
+            </fieldset>
+
+            </div>
+
+            <b id="resp"></b>
+
+            <div id="usuarioregis">
+                <fieldset>
+                    <legend>Usuario Registrado</legend>
+                    <ul>
+                        <li id="usuarioregis2"></li>
+                    </ul>
+                </fieldset>
+            </div>  
+
+            
+            <div id="usuarioact">
+                <fieldset>
+                    <legend>Usuario Actualizado</legend>
+                    <ul>
+                        <li id="usuarioregis3"></li>
+                    </ul>
+                </fieldset>
+            </div>
+            
+            <div id="claveRecordada">
+                <fieldset>
+                    <legend>Recordatorio de clave</legend>
+                    <ul>
+                        <li id="usuarioregis4"></li>
+                    </ul>
+                </fieldset>
+            </div> 
+
+            <div id="cccid">
+                <fieldset>
+                    <legend>Recordatorio de clave</legend>
+                    <ul>
+                        <li id="usuarioregis5"></li>
+                    </ul>
+                </fieldset>
+            </div> 
+
+            <b id="eliminado"></b>
+
+
+            
+
+
+
+    </div>
+
+
+
+//COMPROBAR SI CHECKBOX ESTÁ SELECCIONADO
+
+if( $('.micheckbox').prop('checked') ) {
+    alert('Seleccionado');
+}
+
+//OBTENER VALORES SELECCIONADOS DEL CHECKBOX
+
+$('.micheckbox:checked').each(
+    function() {
+        alert("El checkbox con valor " + $(this).val() + " está seleccionado");
+    }
+);
+
+
+
+    
+    
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarjeta</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="Tarjeta.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="well well-sm">
+                    <form class="form-horizontal" method="post">
+                        <fieldset>
+                            <legend class="text-center header">¡Registrate Ya!</legend>
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"> </span>
+                                <div class="col-md-12">
+                                    <input id="nombre" name="nombre" type="text" placeholder="Primer Nombre" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"> </span>
+                                <div class="col-md-12">
+                                    <input id="contra" name="contra" type="text" placeholder="Contraseña" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"> </span>
+                                <div class="col-md-12">
+                                    <input id="contra2" name="contra2" type="text" placeholder="Contraseña de Nuevo" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"> </span>
+                                <div class="col-md-12">
+                                    <input id="correo" name="correo" type="text" placeholder="Dirección de Correo" class="form-control">
+                                </div>
+                            </div>
+    
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"> </span>
+                                <div class="col-md-12">
+                                    <label>
+                                        Indica tu sexo: 
+                                    </label>
+                                    <select class="sex">
+                                        <option data-tokens="Hombre">Hombre</option>
+                                        <option data-tokens="Mujer">Mujer</option>
+                                    </select>
+                                </div>
+                            </div>
+    
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"> </span>
+                                <div class="col-md-12">
+                                    <label>
+                                        Indica tu fecha de nacimiento: 
+                                    </label>
+                                    <input id="fecha" name="fecha" type="date">
+                                </div>
+                            </div>
+    
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"> </span>
+                                <div class="col-md-12">
+                                    <input id="direccion" name="direccion" type="text" placeholder="Dirección" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-12 text-center">
+                                    <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+    <form action="#" class="credit-card-div">
+        <div class="panel panel-default" >
+         <div class="panel-heading">
+             
+              <div class="row ">
+                      <div class="col-md-12">
+                          <input type="text" class="form-control" placeholder="Enter Card Number" />
+                      </div>
+                  </div>
+             <div class="row ">
+                      <div class="col-md-3 col-sm-3 col-xs-3">
+                          <span class="help-block text-muted small-font" > Expiry Month</span>
+                          <input type="text" class="form-control" placeholder="MM" />
+                      </div>
+                 <div class="col-md-3 col-sm-3 col-xs-3">
+                          <span class="help-block text-muted small-font" >  Expiry Year</span>
+                          <input type="text" class="form-control" placeholder="YY" />
+                      </div>
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                          <span class="help-block text-muted small-font" >  CCV</span>
+                          <input type="text" class="form-control" placeholder="CCV" />
+                      </div>
+                 <div class="col-md-3 col-sm-3 col-xs-3">
+        <img src="assets/img/1.png" class="img-rounded" />
+                 </div>
+                  </div>
+             <div class="row ">
+                      <div class="col-md-12 pad-adjust">
+        
+                          <input type="text" class="form-control" placeholder="Name On The Card" />
+                      </div>
+                  </div>
+             <div class="row">
+        <div class="col-md-12 pad-adjust">
+            <div class="checkbox">
+            <label>
+              <input type="checkbox" checked class="text-muted"> Save details for fast payments <a href="#"> learn how ?</a>
+            </label>
+          </div>
+        </div>
+             </div>
+               <div class="row ">
+                    <div class="col-md-6 col-sm-6 col-xs-6 pad-adjust">
+                         <input type="submit"  class="btn btn-danger" value="CANCEL" />
+                      </div>
+                      <div class="col-md-6 col-sm-6 col-xs-6 pad-adjust">
+                          <input type="submit"  class="btn btn-warning btn-block" value="PAY NOW" />
+                      </div>
+                  </div>
+             
+                           </div>
+                      </div>
+        </form>
+    </div>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
